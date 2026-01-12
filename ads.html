@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch Ads & Earn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Header -->
+    <div class="header">
+        <h2>WatchBoss</h2>
+        <div class="coins">Coins: <span id="coins">0</span></div>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+        <h3>Watch Ad & Earn</h3>
+
+        <!-- Ad Area -->
+        <div class="ad-box">
+            <p>Ad will appear here</p>
+            <!-- 🔴 YAHAN Adsterra / PropellerAds code paste hoga -->
+        </div>
+
+        <button id="watchBtn" onclick="startAd()">Watch Ad</button>
+
+        <p class="timer" id="timerText">Watch 30 seconds</p>
+    </div>
+
+    <!-- Withdraw Info -->
+    <div class="withdraw">
+        <h4>Withdraw Methods</h4>
+        <ul>
+            <li>✔ JazzCash</li>
+            <li>✔ EasyPaisa</li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+let coins = 0;
+let timer = 30;
+let interval;
+
+function startAd() {
+    document.getElementById("watchBtn").disabled = true;
+    timer = 30;
+    document.getElementById("timerText").innerText = "Ad running... 30s";
+
+    interval = setInterval(() => {
+        timer--;
+        document.getElementById("timerText").innerText = "Ad running... " + timer + "s";
+
+        if (timer <= 0) {
+            clearInterval(interval);
+            coins += 50;
+            document.getElementById("coins").innerText = coins;
+            document.getElementById("timerText").innerText = "✅ You earned 50 coins!";
+            document.getElementById("watchBtn").disabled = false;
+        }
+    }, 1000);
+}
+</script>
+
+</body>
+  </html>
